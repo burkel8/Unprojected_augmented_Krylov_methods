@@ -1,6 +1,6 @@
 %%%%%         gmres_residual_approx_test.m    %%%%%
 %   Computes the exact residual computation in unprojected recycled GMRES (ur_gmres) 
-%   And compares it to the residual estimate proposed in the paper.
+%   and compares it to the residual estimate proposed in the paper.
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
 

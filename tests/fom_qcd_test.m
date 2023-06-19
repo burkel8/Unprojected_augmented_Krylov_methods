@@ -1,8 +1,8 @@
 %%%%%         fom_qcd_test.m    %%%%%
-%   Tests and compares unprojected recycled GMRES (ur_fom) to 
-%   recycled GMRES (r_fom) and standard FOM (fom). Convergence curves
-%   and number of vectors the coefficient matrix A is applied to, and a 
-%   plot of their convergence curves is recorded to compare each algorithm.
+%   Tests and compares unprojected recycled FOM (ur_fom) to 
+%   recycled FOM (r_fom) and standard FOM (fom). Convergence curves
+%   and number of vectors the coefficient matrix A is applied to is recorded 
+%   to compare each algorithm.
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
 

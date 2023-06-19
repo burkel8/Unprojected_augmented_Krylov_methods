@@ -1,8 +1,8 @@
 %%%%%         fom_neumann_test.m    %%%%%
 %   Tests and compares unprojected recycled GMRES (ur_fom) to 
 %   recycled GMRES (r_fom) and standard FOM (fom). Convergence curves
-%   and number of vectors the coefficient matrix A is applied to, and a 
-%   plot of their convergence curves is recorded to compare each algorithm.
+%   and number of vectors the coefficient matrix A is applied to is recorded 
+%   to compare each algorithm.
 
 %   The test matrix is a Neumann matrix of size 22500 x 22500 
 
