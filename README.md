@@ -1,11 +1,18 @@
 # Unprojected Augmented Krylov Methods
 
+The purpose of this library is to test unprojected augmented Krylov subspace methods for solving a sequence of linear systems of the form $A x = b$ using Krylov 
+subspace recycling. In particular, the library can be used to test the newly proposed unprojected augmented FUll Orthogonalization Method (urFOM) proposed in
+
+[1] Burke, Liam, and Kirk M. Soodhalter. "Augmented unprojected Krylov subspace methods" arXiv preprint arXiv:2206.12315 (2022).
+
+An unprojected augmented Krylov subspacde method projectes the problem of solving $A x = b $ onto an augmented Krylov subspace of the form $K(A,r) + U$, where U is 
+the recycling subspace, and r is an initial residual vector, whereas a projected method projectes the problem onto a subspace of form $K(PA,Pr) + U$ where P is a projector.
+
 A library which tests and compares unprojected augmented Krylov subspace methods which project onto $K(A,r)$ with the corresponding projected augmented methods
 and the standard (non augmented) method. 
 
 This code is associated to the preprint 
 
-[1] Burke, Liam, and Kirk M. Soodhalter. "Augmented unprojected Krylov subspace methods" arXiv preprint arXiv:2206.12315 (2022).
 
 This library has the two folders, Main and Tests.
 
