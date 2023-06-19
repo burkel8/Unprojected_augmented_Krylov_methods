@@ -1,6 +1,6 @@
 # Unprojected Augmented Krylov Methods
 
-A library which tests and compares unprojected augmented Krylov subspace methods which project onto $\mathcal{K}_{j}(\textbf{A},\textbf{r}_{0})$ with the corresponding projected augmented methods
+A library which tests and compares unprojected augmented Krylov subspace methods which project onto $K(A,r)$ with the corresponding projected augmented methods
 and the standard (non augmented) method. 
 
 This code is associated to the preprint 
