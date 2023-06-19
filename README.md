@@ -16,9 +16,7 @@ This library has the two folders, Main and Tests.
 ## Main
 Contains the main files used to implement all the revelant functions:
 
-* `fom.m`: A function which solves a linear system $Ax = b$ using the standard restarted Full Orthogonalization Method (FOM).
-* `r_fom.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Full Orthogonalization Method (rFOM).
-* `ur_fom.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Full Orthogonalization Method (urFOM).
+* `fom.m`, `r_fom.m`, `ur_fom.m`  : Functions which solve a linear system $Ax = b$ using, respectively, the standard restarted Full Orthogonalization Method (FOM), the (projected) recycled Full Orthogonalization Method (rFOM) and the (un projected) recycled Full Orthogonalization Method (urFOM).
 
 * `gmres.m`: A function which solves a linear system $Ax = b$ using the standard restarted Generalized Minimum Residual Method (GMRES).
 * `r_gmres.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
