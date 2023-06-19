@@ -45,7 +45,6 @@ fprintf("\n Solving a sequence of %d linear system(s) using GMRES, rGMRES and ur
 fprintf("\n  Printing Number of MATVEC's required for each method to converge \n")
 pause(5);
 
-
 % Loop through the full sequence of systems and solve each using the three 
 % methods (gmres , r_gmres and ur_gmres)
 for i = 1:num_systems

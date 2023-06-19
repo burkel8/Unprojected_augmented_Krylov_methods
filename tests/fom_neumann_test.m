@@ -47,9 +47,6 @@ fprintf("\n Solving a sequence of %d linear system(s) using FOM, rFOM and urFOM\
 fprintf("\n  Printing Number of MATVEC's required for each method to converge \n")
 pause(5);
 
-
-
-
 % Loop through the full sequence of systems and solve each using the three 
 % methods (fom , r_fom and ur_fom)
 for i = 1:num_systems
