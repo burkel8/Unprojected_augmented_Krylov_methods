@@ -18,13 +18,8 @@ Contains the main files used to implement all the revelant functions:
 
 * `fom.m`, `r_fom.m`, `ur_fom.m`  : Functions which solve a linear system $Ax = b$ using, respectively, the standard restarted Full Orthogonalization Method (FOM), the (projected) recycled Full Orthogonalization Method (rFOM) and the (un projected) recycled Full Orthogonalization Method (urFOM).
 
-* `gmres.m`: A function which solves a linear system $Ax = b$ using the standard restarted Generalized Minimum Residual Method (GMRES).
-* `r_gmres.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
-* `ur_gmres.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
-
-* `gmres.m`: A function which solves a linear system $Ax = b$ using the standard restarted Generalized Minimum Residual Method (GMRES).
-* `r_gmres.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
-* `ur_gmres.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
+* `gmres.m`, `r_gmres.m`, `ur_gmres.m`: Functions which solve a linear system $Ax = b$ using, respectively,  the standard restarted Generalized Minimum Residual 
+ Method (GMRES), the (projected) recycled Generalized Minimum Residual Method (rGMRES) and the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
 
 * `r_fom_ritz_recycling.m`: A function which constructs a recycling subspace for rFOM by solving the appropriate Ritz problem for rFOM over the augmented Krylov subspace $K(PA,Pr) + U$, where $P$ is the recycled FOM projector, as derived in [1]. 
 
