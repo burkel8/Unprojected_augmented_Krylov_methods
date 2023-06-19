@@ -1,6 +1,6 @@
 # Unprojected Augmented Krylov Methods
 
-A library which tests and compares unprojected augmented Krylov subspace methods with the corresponding projected augmented methods
+A library which tests and compares unprojected augmented Krylov subspace methods which project onto $\mathcal{K}_{j}(\textbf{A},\textbf{r}_{0})$ with the corresponding projected augmented methods
 and the standard (non augmented) method. 
 
 This code is associated to the preprint 
@@ -13,16 +13,16 @@ This library has the two folders, Main and Tests.
 Contains the main files used to implement all the revelant functions:
 
 * `fom.m`: A function which solves a linear system $Ax = b$ using the standard restarted Full Orthogonalization Method (FOM).
-* `r_fom.m`: A function which solves a linear system Ax = b using the (projected) recycled Full Orthogonalization Method (rFOM).
-* `ur_fom.m`: A function which solves a linear system Ax = b using the (un projected) recycled Full Orthogonalization Method (urFOM).
+* `r_fom.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Full Orthogonalization Method (rFOM).
+* `ur_fom.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Full Orthogonalization Method (urFOM).
 
-* `gmres.m`: A function which solves a linear system Ax = b using the standard restarted Generalized Minimum Residual Method (GMRES).
-* `r_gmres.m`: A function which solves a linear system Ax = b using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
-* `ur_gmres.m`: A function which solves a linear system Ax = b using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
+* `gmres.m`: A function which solves a linear system $Ax = b$ using the standard restarted Generalized Minimum Residual Method (GMRES).
+* `r_gmres.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
+* `ur_gmres.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
 
-* `gmres.m`: A function which solves a linear system Ax = b using the standard restarted Generalized Minimum Residual Method (GMRES).
-* `r_gmres.m`: A function which solves a linear system Ax = b using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
-* `ur_gmres.m`: A function which solves a linear system Ax = b using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
+* `gmres.m`: A function which solves a linear system $Ax = b$ using the standard restarted Generalized Minimum Residual Method (GMRES).
+* `r_gmres.m`: A function which solves a linear system $Ax = b$ using the (projected) recycled Generalized Minimum Residual Method (rGMRES).
+* `ur_gmres.m`: A function which solves a linear system $Ax = b$ using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
 
 * `r_fom_ritz_recycling.m`: A function which constructs a recycling subspace for rFOM using an augmented Krylov subspace K + U, by solving
   the appropriate Ritz problem for rFOM.
