@@ -25,19 +25,19 @@ Contains the main files used to implement all the revelant functions:
 * `ur_gmres.m`: A function which solves a linear system Ax = b using the (un projected) recycled Generalized Minimum Residual Method (urGMRES).
 
 * `r_fom_ritz_recycling.m`: A function which constructs a recycling subspace for rFOM using an augmented Krylov subspace K + U, by solving
-*  the appropriate Ritz problem for rFOM.
+  the appropriate Ritz problem for rFOM.
 
 * `r_fom_ritz_recycling.m`: A function which constructs a recycling subspace for rFOM using an augmented Krylov subspace K + U, by solving
-*  the appropriate Ritz problem for rFOM.
+   the appropriate Ritz problem for rFOM.
 
 * `ur_fom_ritz_recycling.m`: A function which constructs a recycling subspace for urFOM using an augmented Krylov subspace K + U, by solving
-*  the appropriate Ritz problem for urFOM.
+   the appropriate Ritz problem for urFOM.
 
 * `ur_gmres_harmritz_recycling.m`: A function which constructs a recycling subspace for urGMRES using an augmented Krylov subspace K + U, by solving
-*  the appropriate harmonic Ritz problem for urGMRES.
+  the appropriate harmonic Ritz problem for urGMRES.
 
 * `r_gmres_harmritz_recycling.m`: A function which constructs a recycling subspace for rGMRES using an augmented Krylov subspace K + U, by solving
-*  the appropriate harmonic Ritz problem for rGMRES.
+  the appropriate harmonic Ritz problem for rGMRES.
 
 ## Tests
 
