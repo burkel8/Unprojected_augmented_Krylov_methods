@@ -7,12 +7,12 @@ This code is associated to the preprint
 
 [1] Burke, Liam, and Kirk M. Soodhalter. "Augmented unprojected Krylov subspace methods" arXiv preprint arXiv:2206.12315 (2022).
 
-This library has the two folders.
+This library has the two folders, Main and Tests.
 
 ## Main
 Contains the main files used to implement all the revelant functions:
 
-* `fom.m`: A function which solves a linear system Ax = b using the standard restarted Full Orthogonalization Method (FOM).
+* `fom.m`: A function which solves a linear system $Ax = b$ using the standard restarted Full Orthogonalization Method (FOM).
 * `r_fom.m`: A function which solves a linear system Ax = b using the (projected) recycled Full Orthogonalization Method (rFOM).
 * `ur_fom.m`: A function which solves a linear system Ax = b using the (un projected) recycled Full Orthogonalization Method (urFOM).
 
