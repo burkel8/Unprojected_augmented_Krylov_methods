@@ -41,6 +41,11 @@ tot_gmres_mv = 0;
 tot_r_gmres_mv = 0;
 tot_ur_gmres_mv = 0;
 
+fprintf("\n Solving a sequence of %d linear system(s) using GMRES, rGMRES and urGMRES\n", num_systems);
+fprintf("\n  Printing Number of MATVEC's required for each method to converge \n")
+pause(5);
+
+
 % Loop through the full sequence of systems and solve each using the three 
 % methods (gmres , r_gmres and ur_gmres)
 for i = 1:num_systems
@@ -85,6 +90,7 @@ ur_gmres_mv(1,i) = tot_ur_gmres_mv;
 
 fprintf("\n             MATVEC's            \n");
 fprintf('\n GMRES: %d rGMRES %d urGMRES %d \n',gmres_o.mv,r_gmres_o.mv, ur_gmres_o.mv);
+pause(5);
 end
 
 fprintf("\n ######## Total MATVEC's #######  \n");
@@ -97,7 +103,7 @@ semilogy(r_gmres_o.residuals,'LineWidth',2);
 hold on; 
 semilogy(ur_gmres_o.residuals,'LineWidth',2);
 hold off;
-legend('gmres','Projected Recycled gmres','Unprojected Recycled gmres','FontSize',12);
+legend('GMRES','rGMRES','urGMRES','FontSize',12);
 xlabel("Restart Number");
 ylabel("Relative Residual");
 grid on;

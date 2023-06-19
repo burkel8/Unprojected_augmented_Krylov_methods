@@ -41,6 +41,11 @@ tot_fom_mv = 0;
 tot_r_fom_mv = 0;
 tot_ur_fom_mv = 0;
 
+fprintf("\n Solving a sequence of %d linear system(s) using FOM, rFOM and urFOM\n", num_systems);
+fprintf("\n  Printing Number of MATVEC's required for each method to converge \n")
+pause(5);
+
+
 % Loop through the full sequence of systems and solve each using the three 
 % methods (fom , r_fom and ur_fom)
 for i = 1:num_systems
@@ -82,6 +87,7 @@ ur_fom_mv(1,i) = tot_ur_fom_mv;
 
 fprintf("\n             MATVEC's            \n");
 fprintf('\n FOM %d rFOM %d urFOM %d \n',fom_o.mv,r_fom_o.mv, ur_fom_o.mv);
+pause(5);
 end
 
 fprintf("\n ######## Total MATVEC's #######  \n");
@@ -95,7 +101,7 @@ semilogy(r_fom_o.residuals,'LineWidth',2);
 hold on; 
 semilogy(ur_fom_o.residuals,'LineWidth',2);
 hold off;
-legend('fom','Projected Recycled fom','Unprojected Recycled fom','FontSize',12);
+legend('FOM','rFOM','urFOM','FontSize',12);
 xlabel("Restart Number");
 ylabel("Relative Residual");
 grid on;

@@ -27,12 +27,17 @@ p.n = n;
 rGMRESp = p;
 ur_gmres_p = p;
 
+fprintf("\n Solving a sequence of %d linear system(s) using GMRES, rGMRES and urGMRES\n", num_systems);
+pause(5);
+
 % Solve all systems
 for i = 1:num_systems
 
 % Create new random rhs for each system    
 rng(i);
 b = randn(n,1);
+
+fprintf("\n ####### System %d  ####### \n", i);
 
 % Call ur_gmres on each system
 ur_gmres_o = ur_gmres(A, b, ur_gmres_p);
@@ -41,13 +46,14 @@ ur_gmres_p.C = ur_gmres_o.C;
 
 end
 
+fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
+
 % Plot residual estimate vs true residual
 semilogy(ur_gmres_o.residuals_approx,'LineWidth',2);
 hold on; 
 semilogy(ur_gmres_o.residuals,'LineWidth',2);
 hold off;
-
-legend('Unprojected rGMRES residual estimate','Unprojected rGMRES residual','FontSize',12);
+legend('urGMRES estimated residual norm','urGMRES exact residual norm','FontSize',12);
 xlabel("Restart Number");
 ylabel("Residuals");
 grid on;

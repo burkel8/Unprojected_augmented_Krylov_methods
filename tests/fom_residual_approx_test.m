@@ -28,12 +28,17 @@ p.n = n;
 r_domp = p;
 ur_fom_p = p;
 
+fprintf("\n Solving a sequence of %d linear system(s) using FOM, rFOM and urFOM\n", num_systems);
+pause(5);
+
 % Solve all systems
 for i = 1:num_systems
 
 % Create new rhs for each system
 rng(i);
 b = randn(n,1);
+
+fprintf("\n ####### System %d  ####### \n", i);
 
 % Call ur_fom for each system
 ur_fom_o = ur_fom(A, b, ur_fom_p);
@@ -43,12 +48,13 @@ ur_fom_p.C = ur_fom_o.C;
 end
 
 % Plot residual estimate vs true residual
+fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
 semilogy(ur_fom_o.residuals_approx,'LineWidth',2);
 hold on; 
 semilogy(ur_fom_o.residuals,'LineWidth',2);
 hold off;
 
-legend('Unprojected r_dom residual estimate','Unprojected r_dom residual','FontSize',12);
+legend('urFOM estimated residual norm','urFOM exact residual norm','FontSize',12);
 xlabel("Restart Number");
 ylabel("Residuals");
 grid on;
