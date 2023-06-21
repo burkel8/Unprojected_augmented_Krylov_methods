@@ -4,21 +4,20 @@
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
 
-%%%%% User defined parameters to be tuned are defined here  %%%
-p.m = 30;           % Dimension of Krylov subspace
+% p is a struct with various fields
+p.m = 120;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Recycling subspace dimension
+p.k = 20;           % Recycling subspace dimension
 p.tol = 1e-15;      % Convergence Tolerance
-num_systems = 4;    % Number of linear systems in a sequence
+num_systems = 1;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QCD test
-addpath(genpath('../'));
-load("smallLQCD_A1.mat");
-n = size(A1,1);
-A = A1 - 0.65*speye(n);
+N = 120;
+n = N*N;
+A = gallery("poisson",N);
+p.n = n;
 
 r_fom_mv = zeros(1,num_systems);
 ur_fom_mv = zeros(1,num_systems);
@@ -28,24 +27,17 @@ p.n = n;
 r_domp = p;
 ur_fom_p = p;
 
-fprintf("\n Solving a sequence of %d linear system(s) using FOM, rFOM and urFOM\n", num_systems);
+fprintf("\n Solving a linear system using urFOM\n");
 pause(5);
 
-% Solve all systems
-for i = 1:num_systems
-
 % Create new rhs for each system
-rng(i);
+rng(4);
 b = randn(n,1);
-
-fprintf("\n ####### System %d  ####### \n", i);
 
 % Call ur_fom for each system
 ur_fom_o = ur_fom(A, b, ur_fom_p);
 ur_fom_p.U = ur_fom_o.U;
 ur_fom_p.C = ur_fom_o.C;
-
-end
 
 % Plot residual estimate vs true residual
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");

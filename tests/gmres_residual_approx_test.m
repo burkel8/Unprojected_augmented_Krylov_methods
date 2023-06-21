@@ -7,44 +7,34 @@
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
-
-p.m = 30;           % Dimension of Krylov subspace
+p.m = 120;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Recycling subspace dimension
+p.k = 20;           % Recycling subspace dimension
 p.tol = 1e-15;      % Convergence Tolerance
-num_systems = 4;    % Number of linear systems in a sequence
+num_systems = 1;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QCD matrix
-addpath(genpath('../'));
-load("smallLQCD_A1.mat");
-n = size(A1,1);
-A = A1 - 0.65*speye(n);
+N = 120;
+n = N*N;
+A = gallery("poisson",N);
 p.n = n;
 
 rGMRESp = p;
 ur_gmres_p = p;
 
-fprintf("\n Solving a sequence of %d linear system(s) using GMRES, rGMRES and urGMRES\n", num_systems);
+fprintf("\n Solving a linear system using urGMRES \n");
 pause(5);
 
-% Solve all systems
-for i = 1:num_systems
-
 % Create new random rhs for each system    
-rng(i);
+rng(4);
 b = randn(n,1);
-
-fprintf("\n ####### System %d  ####### \n", i);
 
 % Call ur_gmres on each system
 ur_gmres_o = ur_gmres(A, b, ur_gmres_p);
 ur_gmres_p.U = ur_gmres_o.U;
 ur_gmres_p.C = ur_gmres_o.C;
-
-end
 
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
 
