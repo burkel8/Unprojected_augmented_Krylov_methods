@@ -101,6 +101,10 @@ end
  iter = iter+1;
  residuals(iter) = residnorm;
 
+ % Estimate residual cheaply
+ cheap_residnorm = norm( normr*e1 - H*y)/normr0;
+ residuals_approx(iter) = cheap_residnorm;
+
  % Construct recycling subspace using Ritz vectors
  [P,~] = eigs(H(1:m,1:m),k,'smallestreal');
  U = V(:,1:m) * P;
