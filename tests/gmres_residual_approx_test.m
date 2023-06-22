@@ -39,11 +39,11 @@ ur_gmres_p.C = ur_gmres_o.C;
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
 
 % Plot residual estimate vs true residual
-semilogy(ur_gmres_o.residuals_approx,'LineWidth',2);
+semilogy(ur_gmres_o.residuals_approx,'LineWidth',3);
 hold on; 
-semilogy(ur_gmres_o.residuals,'LineWidth',2);
+semilogy(ur_gmres_o.residuals,'LineWidth',3);
 hold off;
-legend('urGMRES estimated residual norm','urGMRES exact residual norm','FontSize',12);
+legend('Estimated residual norm','Exact residual norm','FontSize',20);
 xlabel("Restart Number");
-ylabel("Residuals");
+set(gca,"FontSize",15)
 grid on;

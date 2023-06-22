@@ -1,42 +1,44 @@
-%%%%%         gmres_test.m    %%%%%
+%%%%%         gmres_neumann_test.m    %%%%%
 %   Tests and compares unprojected recycled GMRES (ur_gmres) to 
 %   recycled GMRES (r_gmres) and standard GMRES (gmres). Convergence curves
-%   and number of vectors the coefficient matrix A is applied to, 
-%   is recorded to compare each algorithm.
+%   and number of vectors the coefficient matrix A is applied to is recorded 
+%   to compare each algorithm.
 
-%   The test matrix is a QCD matrix of size 3072 x 3072 
+%   The test matrix is a Neumann matrix of size 22500 x 22500 
 
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
-p.m = 50;           % Dimension of Krylov subspace
+p.m = 90;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Recycling subspace dimension
-p.tol = 1e-13;      % Convergence Tolerance
-num_systems = 3;    % Number of linear systems in a sequence
+p.k = 20;           % Reycling subspace dimension
+p.tol = 1e-14;      % Convergence Tolerance
+num_systems = 5;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+% Construct Neumann Matrix
 addpath(genpath('../'));
-load("smallLQCD_A1.mat");
-n = size(A1,1);
-A = A1 - 0.65*speye(n);
+rng(4);
+n = 22500;
+A = gallery('neumann', n) + 0.0001*speye(n);
 
-%vectors to store number of A applications for each problem in sequence
+% vectors to store number of vectors matrix A is applied to for each
+% problem in the sequence
 gmres_mv = zeros(1,num_systems);
 r_gmres_mv = zeros(1,num_systems);
 ur_gmres_mv = zeros(1,num_systems);
 
-p.n = n; %  A is n x n matrix
+p.n = n;  %  A is n x n matrix
 
 % Input struct for each method will be the same
 gmres_p = p;
 r_gmres_p = p;
 ur_gmres_p = p;
 
-% Counters to record total number of vectors A is applied to for each method
+% Counters to record total number of vectors A is applied to for each
+% method
 tot_gmres_mv = 0;
 tot_r_gmres_mv = 0;
 tot_ur_gmres_mv = 0;
@@ -48,6 +50,7 @@ pause(5);
 % Loop through the full sequence of systems and solve each using the three 
 % methods (gmres , r_gmres and ur_gmres)
 for i = 1:num_systems
+
 fprintf("\n #######  System %d #######  \n", i);
 
 % Create random right hand size for each system
@@ -88,17 +91,16 @@ r_gmres_mv(1,i) = tot_r_gmres_mv;
 ur_gmres_mv(1,i) = tot_ur_gmres_mv;
 
 fprintf("\n             MATVEC's            \n");
-fprintf('\n GMRES: %d rGMRES %d urGMRES %d \n',gmres_o.mv,r_gmres_o.mv, ur_gmres_o.mv);
+fprintf('\n GMRES %d rGMRES %d urGMRES %d \n',gmres_o.mv,r_gmres_o.mv, ur_gmres_o.mv);
 pause(5);
-
-A = A + 0.0001*sprand(A);
 
 end
 
 fprintf("\n ######## Total MATVEC's #######  \n");
-fprintf("\n  GMRES %d rGMRES %d urGMRES %d\n", tot_gmres_mv,tot_r_gmres_mv, tot_ur_gmres_mv);
+fprintf("\n GMRES %d rGMRES %d urGMRES %d\n", tot_gmres_mv,tot_r_gmres_mv, tot_ur_gmres_mv);
 
-h = semilogy(gmres_o.residuals,'LineWidth',4);
+% plot convergence curve of final system.
+semilogy(gmres_o.residuals,'LineWidth',4);
 hold on;
 semilogy(r_gmres_o.residuals,'LineWidth',4);
 hold on; 

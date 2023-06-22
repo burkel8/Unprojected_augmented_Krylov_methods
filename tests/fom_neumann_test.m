@@ -9,11 +9,11 @@
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
-p.m = 30;           % Dimension of Krylov subspace
+p.m = 90;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Reycling subspace dimension
-p.tol = 1e-15;      % Convergence Tolerance
-num_systems = 1;    % Number of linear systems in a sequence
+p.k = 20;           % Reycling subspace dimension
+p.tol = 1e-14;      % Convergence Tolerance
+num_systems = 5;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,13 +100,14 @@ fprintf("\n ######## Total MATVEC's #######  \n");
 fprintf("\n FOM %d rFOM %d urFOM %d\n", tot_fom_mv,tot_r_fom_mv, tot_ur_fom_mv);
 
 % plot convergence curve of final system.
-semilogy(fom_o.residuals,'LineWidth',2);
+semilogy(fom_o.residuals,'LineWidth',4);
 hold on;
-semilogy(r_fom_o.residuals,'LineWidth',2);
+semilogy(r_fom_o.residuals,'LineWidth',4);
 hold on; 
-semilogy(ur_fom_o.residuals,'LineWidth',2);
+semilogy(ur_fom_o.residuals,'LineWidth',4);
 hold off;
-legend('FOM','rFOM','urFOM','FontSize',12);
+legend('FOM','rFOM','urFOM','FontSize',20);
 xlabel("Restart Number");
 ylabel("Relative Residual");
+set(gca,"FontSize",15)
 grid on;

@@ -41,12 +41,12 @@ ur_fom_p.C = ur_fom_o.C;
 
 % Plot residual estimate vs true residual
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
-semilogy(ur_fom_o.residuals_approx,'LineWidth',2);
+semilogy(ur_fom_o.residuals_approx,'LineWidth',3);
 hold on; 
-semilogy(ur_fom_o.residuals,'LineWidth',2);
+semilogy(ur_fom_o.residuals,'LineWidth',3);
 hold off;
 
-legend('urFOM estimated residual norm','urFOM exact residual norm','FontSize',12);
+legend('Estimated residual norm','Exact residual norm','FontSize',20);
 xlabel("Restart Number");
-ylabel("Residuals");
+set(gca,"FontSize",15)
 grid on;
