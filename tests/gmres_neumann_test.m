@@ -5,7 +5,15 @@
 %   to compare each algorithm.
 
 %   The test matrix is a Neumann matrix of size 22500 x 22500 
+addpath(genpath('../'))
 
+set(0,...
+ 'defaultaxeslinewidth',1,...
+'defaultaxesfontsize',18,...
+'defaultlinelinewidth',3,...
+'defaultpatchlinewidth',2,...
+'defaultlinemarkersize',8,...
+'defaulttextinterpreter','latex');
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
@@ -100,15 +108,14 @@ fprintf("\n ######## Total MATVEC's #######  \n");
 fprintf("\n GMRES %d rGMRES %d urGMRES %d\n", tot_gmres_mv,tot_r_gmres_mv, tot_ur_gmres_mv);
 
 % plot convergence curve of final system.
-semilogy(gmres_o.residuals,'LineWidth',4);
+semilogy(gmres_o.residuals,'--');
 hold on;
-semilogy(r_gmres_o.residuals,'LineWidth',4);
+semilogy(r_gmres_o.residuals,':s');
 hold on; 
-semilogy(ur_gmres_o.residuals,'LineWidth',4);
+semilogy(ur_gmres_o.residuals,'-v');
 hold off;
-legend('GMRES','rGMRES','urGMRES','FontSize',20);
+legend('GMRES','rGMRES','urGMRES');
 xlabel("Restart Number");
 ylabel("Relative Residual");
-set(gca,"FontSize",15)
 grid on;
 

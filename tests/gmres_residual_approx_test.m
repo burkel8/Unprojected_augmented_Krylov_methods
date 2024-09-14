@@ -4,6 +4,15 @@
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
 
+set(0,...
+ 'defaultaxeslinewidth',1,...
+'defaultaxesfontsize',18,...
+'defaultlinelinewidth',3,...
+'defaultpatchlinewidth',2,...
+'defaultlinemarkersize',8,...
+'defaulttextinterpreter','latex');
+
+
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
@@ -39,11 +48,10 @@ ur_gmres_p.C = ur_gmres_o.C;
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
 
 % Plot residual estimate vs true residual
-semilogy(ur_gmres_o.residuals_approx,'LineWidth',3);
+semilogy(ur_gmres_o.residuals_approx,':s');
 hold on; 
-semilogy(ur_gmres_o.residuals,'LineWidth',3);
+semilogy(ur_gmres_o.residuals,'-v');
 hold off;
-legend('Estimated residual norm','Exact residual norm','FontSize',20);
+legend('Estimated residual norm','Exact residual norm');
 xlabel("Restart Number");
-set(gca,"FontSize",15)
 grid on;

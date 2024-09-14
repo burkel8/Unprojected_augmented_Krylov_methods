@@ -5,24 +5,30 @@
 %   is recorded to compare each algorithm.
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
+addpath(genpath('../'))
 
+set(0,...
+ 'defaultaxeslinewidth',1,...
+'defaultaxesfontsize',18,...
+'defaultlinelinewidth',3,...
+'defaultpatchlinewidth',2,...
+'defaultlinemarkersize',8,...
+'defaulttextinterpreter','latex');
 %%%%% User defined parameters to be tuned are defined here  %%%
-
 % p is a struct with various fields
 p.m = 50;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Recycling subspace dimension
-p.tol = 1e-13;      % Convergence Tolerance
-num_systems = 3;    % Number of linear systems in a sequence
+p.k = 20;           % Recycling subspace dimension
+p.tol = 1e-15;      % Convergence Tolerance
+num_systems = 5;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 addpath(genpath('../'));
-load("smallLQCD_A1.mat");
-n = size(A1,1);
-A = A1 - 0.65*speye(n);
+load("conf5_0-4x4-10.mat");
+A = Problem.A;
+n = size(A,1);
+A = A + 4.8517*speye(n);
 
 %vectors to store number of A applications for each problem in sequence
 gmres_mv = zeros(1,num_systems);
@@ -98,15 +104,14 @@ end
 fprintf("\n ######## Total MATVEC's #######  \n");
 fprintf("\n  GMRES %d rGMRES %d urGMRES %d\n", tot_gmres_mv,tot_r_gmres_mv, tot_ur_gmres_mv);
 
-h = semilogy(gmres_o.residuals,'LineWidth',4);
+h = semilogy(gmres_o.residuals,'--');
 hold on;
-semilogy(r_gmres_o.residuals,'LineWidth',4);
+semilogy(r_gmres_o.residuals,':s');
 hold on; 
-semilogy(ur_gmres_o.residuals,'LineWidth',4);
+semilogy(ur_gmres_o.residuals,'-v');
 hold off;
-legend('GMRES','rGMRES','urGMRES','FontSize',20);
+legend('GMRES','rGMRES','urGMRES');
 xlabel("Restart Number");
 ylabel("Relative Residual");
-set(gca,"FontSize",15)
 grid on;
 

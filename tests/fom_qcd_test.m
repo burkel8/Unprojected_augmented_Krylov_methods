@@ -5,23 +5,31 @@
 %   to compare each algorithm.
 
 %   The test matrix is a QCD matrix of size 3072 x 3072 
+addpath(genpath('../'))
 
+set(0,...
+ 'defaultaxeslinewidth',1,...
+'defaultaxesfontsize',18,...
+'defaultlinelinewidth',3,...
+'defaultpatchlinewidth',2,...
+'defaultlinemarkersize',8,...
+'defaulttextinterpreter','latex');
 %%%%% User defined parameters to be tuned are defined here  %%%
 
 % p is a struct with various fields
 p.m = 50;           % Dimension of Krylov subspace
 p.max_cycles = 5;   % Max number of Arnoldi cycles
-p.k = 10;           % Recycling subspace dimension
-p.tol = 1e-13;      % Convergence Tolerance
-num_systems = 3;    % Number of linear systems in a sequence
+p.k = 20;           % Recycling subspace dimension
+p.tol = 1e-15;      % Convergence Tolerance
+num_systems = 5;    % Number of linear systems in a sequence
 p.U = [];       % Recycling subspace basis
 p.C = [];       % C such that C = A*U;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-addpath(genpath('../'))
-load("smallLQCD_A1.mat");
-n = size(A1,1);
-A = A1 - 0.65*speye(n);
+load("conf5_0-4x4-10.mat");
+A = Problem.A;
+n = size(A,1);
+A = A + 4.8517*speye(n);
 
 % Counters to record total number of vectors A is applied to for each
 % method
@@ -97,14 +105,13 @@ fprintf("\n FOM %d rFOM %d urFOM %d\n", tot_fom_mv,tot_r_fom_mv, tot_ur_fom_mv);
 
 % plot convergence curve of final system.
 
-h = semilogy(fom_o.residuals,'LineWidth',4);
+h = semilogy(fom_o.residuals,'--');
 hold on;
-semilogy(r_fom_o.residuals,'LineWidth',4);
+semilogy(r_fom_o.residuals,':s');
 hold on; 
-semilogy(ur_fom_o.residuals,'LineWidth',4);
+semilogy(ur_fom_o.residuals,'-v');
 hold off;
-legend('FOM','rFOM','urFOM','FontSize',20);
+legend('FOM','rFOM','urFOM');
 xlabel("Restart Number");
 ylabel("Relative Residual");
-set(gca,"FontSize",15)
 grid on;

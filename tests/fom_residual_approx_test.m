@@ -2,7 +2,17 @@
 %   Computes the exact residual computation in unprojected recycled GMRES (ur_fom) 
 %   And compares it to the residual estimate proposed in the paper.
 
-%   The test matrix is a QCD matrix of size 3072 x 3072 
+%   The test matrix is a QCD matrix of size 3072 x 3072
+
+addpath(genpath('../'))
+
+set(0,...
+ 'defaultaxeslinewidth',1,...
+'defaultaxesfontsize',18,...
+'defaultlinelinewidth',3,...
+'defaultpatchlinewidth',2,...
+'defaultlinemarkersize',8,...
+'defaulttextinterpreter','latex');
 
 % p is a struct with various fields
 p.m = 120;           % Dimension of Krylov subspace
@@ -41,12 +51,11 @@ ur_fom_p.C = ur_fom_o.C;
 
 % Plot residual estimate vs true residual
 fprintf("\n Plotting estimated residual norm vs exact residual norm for last system \n");
-semilogy(ur_fom_o.residuals_approx,'LineWidth',3);
+semilogy(ur_fom_o.residuals_approx,':s');
 hold on; 
-semilogy(ur_fom_o.residuals,'LineWidth',3);
+semilogy(ur_fom_o.residuals,'-v');
 hold off;
 
-legend('Estimated residual norm','Exact residual norm','FontSize',20);
+legend('Estimated residual norm','Exact residual norm');
 xlabel("Restart Number");
-set(gca,"FontSize",15)
 grid on;
