@@ -40,7 +40,7 @@ normr0 = norm(r); % Initial residual norm
 normr = normr0;   
  
 iter = 1;           % Iteration number
-residnorm = 1;      % Initial relative residual norm is always 1
+residnorm = normr;      % Initial relative residual norm is always 1
 
 % Store initial relative residual in first entry of residuals vector
 residuals(iter)= residnorm;   
@@ -50,7 +50,7 @@ mv = 0;
 
 % Run restarted FOM until convergence
 
-while(residnorm > param.tol)
+while(residnorm/normr0 > param.tol)
 
 V(:,1) = r/normr;
 
@@ -78,7 +78,7 @@ for j=1:m
     r = r - V(:,1:m+1) * H * y;
    
     normr = norm(r);
-    residnorm = normr/normr0;
+    residnorm = normr;
 
     iter = iter + 1;
     residuals(iter) = residnorm;

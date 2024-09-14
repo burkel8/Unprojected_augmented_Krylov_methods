@@ -50,7 +50,10 @@ normr0 = norm(res); % Initial residual norm
 normr = normr0;   
  
 iter = 1;           % Iteration number
-residnorm = 1;      % Initial relative residual norm is always 1
+
+%residnorm = 1;      % Initial relative residual norm is always 1
+residnorm = normr;
+
 
 % Store initial relative residual in first entry of residuals vector
 residuals(iter)= residnorm;   
@@ -97,7 +100,7 @@ end
  res = b - V*H*y;
 
  normr = norm(res);
- residnorm = normr/normr0;
+ residnorm = normr;
  iter = iter+1;
  residuals(iter) = residnorm;
 
@@ -127,7 +130,7 @@ else
 end
 
 % perform enough cycles of ur_fom to reach convergence
-while(residnorm > param.tol)
+while(residnorm/normr0 > param.tol)
 
 % mgs Arnoldi
 V(:,1) = res/normr;
@@ -166,7 +169,8 @@ approx_sol = approx_sol + V(:,1:m) * y - U * ortho_coeff * y;
 res = r - V(:,1:m+1) * H * y + C*ortho_coeff*y ;
 
 normr = norm(res);
-residnorm = normr/normr0;
+%residnorm = normr/normr0;
+residnorm = normr;
 
 iter = iter + 1;
 residuals(iter) = residnorm;

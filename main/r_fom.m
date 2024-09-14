@@ -46,7 +46,7 @@ normr0 = norm(res); % Initial residual norm
 normr = normr0;   
  
 iter = 1;           % Iteration number
-residnorm = 1;      % Initial relative residual norm is always 1
+residnorm = normr;      % Initial relative residual norm is always 1
 
 % Store initial relative residual in first entry of residuals vector
 residuals(iter)= residnorm;   
@@ -93,7 +93,7 @@ end
  res = b - V*H*y;
 
  normr = norm(res);
- residnorm = normr/normr0;
+ residnorm = normr;
 
  iter = iter+1;
  residuals(iter) = residnorm;
@@ -123,7 +123,7 @@ end
 % performing an Arnoldi cycle with a projected matrix
 ortho_coeff = zeros(k, m);
 
-while(residnorm > param.tol)
+while(residnorm/normr0 > param.tol)
    
     % Compute projection of U (reduces sync points)
     tmp1 = U' * [C res];
@@ -167,7 +167,7 @@ while(residnorm > param.tol)
     res = r - V(:,1:m+1) * H * y;
 
     normr = norm(res);
-    residnorm = normr/normr0;
+    residnorm = normr;
 
     iter = iter + 1;
     residuals(iter) = residnorm;
